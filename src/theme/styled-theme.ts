@@ -8,8 +8,8 @@ const styledTheme: DefaultTheme = {
     gray: '#E5E5E5',
     gray7: '#8C8C8C',
     gray8: '#595959',
-    blue: '#1890FF',
-    daybreakBlue: '#E6F7FF',
+    blue: '#1E88E5',
+    daybreakBlue: '#0056b3',
   },
   breakpoints: {
     xs: 0,

@@ -1,10 +1,13 @@
 import { useState } from "react";
 import routerPaths from "../../router/router-paths";
 import { useGetUsersQuery } from "../../services/infakt-api";
-import LinkButton from "../../shared/components/buttons/LinkButton";
+import LinkButton, {
+  LinkButtonType,
+} from "../../shared/components/buttons/LinkButton";
 import styled from "styled-components";
 import Logo from "../../infaktLogo.png";
 import { ClipLoader } from "react-spinners";
+import { styledTheme } from "../../theme";
 
 const Accountants = () => {
   const [resultsPerPage, setResultsPerPage] = useState(4);
@@ -23,7 +26,11 @@ const Accountants = () => {
       <LogoImage src={Logo} alt="Logo" />
       {isLoading ? (
         <LoaderWrapper>
-          <ClipLoader size={50} color={"#123abc"} loading={isLoading} />
+          <ClipLoader
+            size={50}
+            color={styledTheme.colors.blue}
+            loading={isLoading}
+          />
         </LoaderWrapper>
       ) : error ? (
         <p>Wystąpił błąd</p>
@@ -35,13 +42,17 @@ const Accountants = () => {
                 key={user.login.uuid}
                 route={routerPaths.home}
                 text="Dowiedz się więcej"
-                type="secondary"
+                type={LinkButtonType.SECONDARY}
               />
             ))}
           </ListWrapper>
           <button onClick={loadMoreResults}>
             {isFetching ? (
-              <ClipLoader size={50} color={"#123abc"} loading={isFetching} />
+              <ClipLoader
+                size={50}
+                color={styledTheme.colors.blue}
+                loading={isFetching}
+              />
             ) : (
               "Załaduj kolejne"
             )}
@@ -60,7 +71,7 @@ const LoaderWrapper = styled.div`
 `;
 
 const LogoImage = styled.img`
-  width: 120px;
+  width: 146px;
   margin-right: 10px;
 `;
 
@@ -68,11 +79,12 @@ const ListWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
-  padding: 4px;
+  padding: 48px 0;
 `;
 
 const Container = styled.div`
-  margin: 130px 80px;
+  margin: 44px 80px;
+  padding: 4px;
 `;
 
 export default Accountants;

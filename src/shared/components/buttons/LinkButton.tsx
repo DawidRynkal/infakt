@@ -1,17 +1,22 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+export enum LinkButtonType {
+  PRIMARY = "primary",
+  SECONDARY = "secondary",
+}
+
 interface LinkButtonProps {
   route: string;
   text: string;
-  type?: "primary" | "secondary";
+  type?: LinkButtonType;
 }
 
 const LinkButton = ({ route, text, type }: LinkButtonProps) => {
   switch (type) {
-    case "primary":
+    case LinkButtonType.PRIMARY:
       return <PrimaryButton to={route}>{text}</PrimaryButton>;
-    case "secondary":
+    case LinkButtonType.SECONDARY:
       return <SecondaryButton to={route}>{text}</SecondaryButton>;
     default:
       return <PrimaryButton to={route}>{text}</PrimaryButton>;
@@ -19,8 +24,8 @@ const LinkButton = ({ route, text, type }: LinkButtonProps) => {
 };
 
 const PrimaryButton = styled(Link)`
-  background-color: #007bff;
-  color: #fff;
+  background-color: ${({ theme: { colors } }) => colors.blue};
+  color: ${({ theme: { colors } }) => colors.white};
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -29,13 +34,13 @@ const PrimaryButton = styled(Link)`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: ${({ theme: { colors } }) => colors.daybreakBlue};
   }
 `;
 
 const SecondaryButton = styled(Link)`
-  background-color: #007bff;
-  color: #fff;
+  background-color: ${({ theme: { colors } }) => colors.daybreakBlue};
+  color: ${({ theme: { colors } }) => colors.white};
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -44,7 +49,7 @@ const SecondaryButton = styled(Link)`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: ${({ theme: { colors } }) => colors.gray};
   }
 `;
 

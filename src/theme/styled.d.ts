@@ -5,16 +5,15 @@ declare module 'styled-components' {
     colors: {
       white: string;
       black: string;
-      red: string;
+      blue3: string;
       gray: string;
-      gray7: string;
-      gray8: string;
+      gray2: string;
+      blue2: string;
       blue: string;
       daybreakBlue: string;
     };
     breakpoints: {
       xs: number;
-      sm: number;
       md: number;
       lg: number;
       xl: number;

@@ -28,7 +28,7 @@ const PrimaryButton = styled(Link)`
   color: ${({ theme: { colors } }) => colors.white};
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   text-decoration: none;
   font-size: 18px;
   transition: background-color 0.3s ease;
@@ -39,14 +39,17 @@ const PrimaryButton = styled(Link)`
 `;
 
 const SecondaryButton = styled(Link)`
-  background-color: ${({ theme: { colors } }) => colors.daybreakBlue};
-  color: ${({ theme: { colors } }) => colors.white};
+  background-color: ${({ theme: { colors } }) => colors.blue2};
+  color: ${({ theme: { colors } }) => colors.blue3};
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
   transition: background-color 0.3s ease;
+  width: fit-content;
 
   &:hover {
     background-color: ${({ theme: { colors } }) => colors.gray};

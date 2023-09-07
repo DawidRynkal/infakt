@@ -7,11 +7,16 @@ const GlobalStyle = createGlobalStyle`
     
     body {
         margin: 0;
-        font-family: 'Montserrat', sans-serif;
+        font-family: 'Roboto', sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         color: #262626;
         font-weight: 500;
+    }
+
+    p {
+        padding: 0;
+        margin: 0;
     }
 `;
 

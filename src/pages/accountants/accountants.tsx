@@ -1,13 +1,11 @@
 import { useState } from "react";
-import routerPaths from "../../router/router-paths";
 import { useGetUsersQuery } from "../../services/infakt-api";
-import LinkButton, {
-  LinkButtonType,
-} from "../../shared/components/buttons/LinkButton";
 import styled from "styled-components";
 import Logo from "../../infaktLogo.png";
 import { ClipLoader } from "react-spinners";
 import { styledTheme } from "../../theme";
+import UserTile from "../../shared/components/UserTile";
+import CustomButton from "../../shared/components/buttons/CustomButton";
 
 const Accountants = () => {
   const [resultsPerPage, setResultsPerPage] = useState(4);
@@ -38,30 +36,41 @@ const Accountants = () => {
         <>
           <ListWrapper>
             {data?.results.map((user) => (
-              <LinkButton
+              <UserTile
                 key={user.login.uuid}
-                route={routerPaths.home}
-                text="Dowiedz się więcej"
-                type={LinkButtonType.SECONDARY}
+                cell={user.cell}
+                firstName={user.name.first}
+                lastName={user.name.last}
+                email={user.email}
+                avatar={user.picture.medium}
+                gender={user.gender}
+                price="350,00"
               />
             ))}
           </ListWrapper>
-          <button onClick={loadMoreResults}>
-            {isFetching ? (
+          <ButtonAndLoaderWrapper>
+            {isFetching && (
               <ClipLoader
                 size={50}
                 color={styledTheme.colors.blue}
                 loading={isFetching}
               />
-            ) : (
-              "Załaduj kolejne"
             )}
-          </button>
+            <CustomButton
+              text="Załaduj kolejne"
+              handleOnClick={loadMoreResults}
+            />
+          </ButtonAndLoaderWrapper>
         </>
       )}
     </Container>
   );
 };
+
+const ButtonAndLoaderWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
 
 const LoaderWrapper = styled.div`
   width: 100%;
@@ -80,11 +89,28 @@ const ListWrapper = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
   padding: 48px 0;
+
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.xl}px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.lg}px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.md}px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
 
 const Container = styled.div`
   margin: 44px 80px;
   padding: 4px;
+
+  @media (max-width: ${({ theme: { breakpoints } }) => breakpoints.xs}px) {
+    margin: 14px 30px;
+    padding: 4px;
+  }
 `;
 
 export default Accountants;

@@ -5,6 +5,7 @@ export type AccountantType = {
       last: string;
     };
     email: string;
+    gender: string;
     picture: { thumbnail: string; medium: string };
     login: {
       uuid: string;

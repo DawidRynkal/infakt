@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useGetUsersQuery } from "../../services/infakt-api";
 import styled from "styled-components";
 import Logo from "../../infaktLogo.png";
@@ -6,18 +6,37 @@ import { ClipLoader } from "react-spinners";
 import { styledTheme } from "../../theme";
 import UserTile from "../../shared/components/UserTile";
 import CustomButton from "../../shared/components/buttons/CustomButton";
+import { AccountantType } from "../../services/infakt-api-types";
 
 const Accountants = () => {
   const [resultsPerPage, setResultsPerPage] = useState(4);
-
+  const [loadedData, setLoadedData] = useState<AccountantType[]>([]);
   const { data, error, isLoading, isFetching } = useGetUsersQuery({
     page: 1,
     results: resultsPerPage,
   });
 
+  useEffect(() => {
+    if (data) {
+      if (loadedData.length === 0) {
+        setLoadedData(data.results);
+      }
+    }
+  }, [data]);
+
   const loadMoreResults = () => {
-    setResultsPerPage(resultsPerPage + 4);
+    setResultsPerPage((prevResultsPerPage) => prevResultsPerPage + 4);
   };
+
+  useEffect(() => {
+    if (isFetching === false) {
+      const newResultsCount = resultsPerPage - loadedData.length;
+      if (newResultsCount > 0 && data) {
+        const newResults = data.results.slice(0, newResultsCount);
+        setLoadedData([...loadedData, ...newResults]);
+      }
+    }
+  }, [isFetching]);
 
   return (
     <Container>
@@ -35,7 +54,7 @@ const Accountants = () => {
       ) : (
         <>
           <ListWrapper>
-            {data?.results.map((user) => (
+            {loadedData.map((user) => (
               <UserTile
                 key={user.login.uuid}
                 cell={user.cell}
@@ -49,17 +68,18 @@ const Accountants = () => {
             ))}
           </ListWrapper>
           <ButtonAndLoaderWrapper>
-            {isFetching && (
+            {isFetching ? (
               <ClipLoader
                 size={50}
                 color={styledTheme.colors.blue}
                 loading={isFetching}
               />
+            ) : (
+              <CustomButton
+                text="Załaduj kolejne"
+                handleOnClick={loadMoreResults}
+              />
             )}
-            <CustomButton
-              text="Załaduj kolejne"
-              handleOnClick={loadMoreResults}
-            />
           </ButtonAndLoaderWrapper>
         </>
       )}

@@ -18,6 +18,7 @@ const StyledButton = styled.button`
   text-decoration: none;
   font-size: 18px;
   transition: background-color 0.3s ease;
+  cursor: pointer;
 
   &:hover {
     background-color: ${({ theme: { colors } }) => colors.daybreakBlue};

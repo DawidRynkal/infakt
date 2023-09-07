@@ -7,6 +7,7 @@ import { styledTheme } from "../../theme";
 import UserTile from "../../shared/components/UserTile";
 import CustomButton from "../../shared/components/buttons/CustomButton";
 import { AccountantType } from "../../services/infakt-api-types";
+import ErrorMessage from "../../shared/components/ErrorMessage";
 
 const Accountants = () => {
   const [resultsPerPage, setResultsPerPage] = useState(4);
@@ -50,7 +51,10 @@ const Accountants = () => {
           />
         </LoaderWrapper>
       ) : error ? (
-        <p>Wystąpił błąd</p>
+        <ErrorMessage
+          text="Wystąpił błąd, spróbuj później"
+          error={error ? true : false}
+        />
       ) : (
         <>
           <ListWrapper>

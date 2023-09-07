@@ -44,7 +44,7 @@ const UserTile = ({
         </TileHead>
         <DetailWrapper>
           <DetailTitle>E-mail</DetailTitle>
-          <Detail isUnderlined href={`mailto:${email}`}>
+          <Detail $underlined={true} href={`mailto:${email}`}>
             {email}
           </Detail>
         </DetailWrapper>
@@ -60,7 +60,7 @@ const UserTile = ({
         </DetailWrapper>
       </ContentWrapper>
       <LinkButton
-        route={routerPaths.home}
+        route={routerPaths.accountantsDetails}
         text="Dowiedz się więcej"
         type={LinkButtonType.SECONDARY}
       />
@@ -81,15 +81,14 @@ const DetailTitle = styled.div`
 `;
 
 type DetailProps = {
-  isUnderlined?: boolean;
+  $underlined?: boolean;
 };
 
 const Detail = styled.a<DetailProps>`
   font-size: 16px;
   line-height: 24px;
   color: ${({ theme: { colors } }) => colors.black};
-  text-decoration: ${({ isUnderlined }) =>
-    isUnderlined ? "underline" : "none"};
+  text-decoration: ${({ $underlined }) => ($underlined ? "underline" : "none")};
 `;
 
 const Currency = styled.span`

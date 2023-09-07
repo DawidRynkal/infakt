@@ -1,6 +1,7 @@
 const routerPaths = {
-    home: '/',
-    accountants: '/ksiegowi',
-  };
-  
-  export default routerPaths;
+  home: "/",
+  accountants: "/ksiegowi",
+  accountantsDetails: "/szczegoly",
+};
+
+export default routerPaths;

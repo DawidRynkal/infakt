@@ -139,7 +139,6 @@ const Tile = styled.div`
   border-radius: 16px;
   padding: 24px;
   min-width: 250px;
-  max-width: 300px;
   display: flex;
   justify-content: space-between;
   flex-direction: column;

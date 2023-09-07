@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useGetUsersQuery } from "../../services/infakt-api";
 import styled from "styled-components";
-import Logo from "../../infaktLogo.png";
+import Logo from "../../assets/infaktLogo.png";
 import { ClipLoader } from "react-spinners";
 import { styledTheme } from "../../theme";
 import UserTile from "../../shared/components/UserTile";

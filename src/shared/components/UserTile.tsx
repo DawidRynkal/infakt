@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import routerPaths from "../../router/router-paths";
 import LinkButton, { LinkButtonType } from "./buttons/LinkButton";
+import EmptyUser from "../../assets/emptyUser.png";
 
 enum Gender {
   MALE = "male",
@@ -30,7 +31,12 @@ const UserTile = ({
     <Tile>
       <ContentWrapper>
         <TileHead>
-          <Avatar src={avatar} alt="user face" />
+          {avatar ? (
+            <Avatar src={avatar} alt="user face" />
+          ) : (
+            <Avatar src={EmptyUser} alt="infakt" />
+          )}
+
           <TitleWrapper>
             <Title>
               {gender === Gender.FEMALE ? "Twoja księgowa" : "Twój księgowy"}

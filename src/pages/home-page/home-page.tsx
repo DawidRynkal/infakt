@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import routerPaths from "../../router/router-paths";
-import Logo from "../../infaktLogo.png";
+import Logo from "../../assets/infaktLogo.png";
 import LinkButton from "../../shared/components/buttons/LinkButton";
 
 const HomePage = () => {
